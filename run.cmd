@@ -1,6 +1,8 @@
 @echo off
 
-setlocal
+REM setlocal enabledelayedexpansion
+
+REM set errorlevel=
 
 :: Debug = 0, Release = 1
 if "%2" == "" (
@@ -44,14 +46,15 @@ REM ) else if "%1" == "window"          ( goto :WINDOW
 
 
 :HELP
-    echo Usage : $ build.cmd [directory's name]
-    echo   Example: $ build.cmd message_box
+    echo Usage : $ run.cmd [directory's name]
+    echo   Example: $ run.cmd message_box
 goto :EOF
 
 
 :MESSAGE_BOX
     pushd %1
-    %compiler% %compiler_settings% main.cpp /link user32.lib -OUT:%1.exe
+    %compiler% %compiler_settings% main.cpp -Fo:main ^
+        /link user32.lib -OUT:%1.exe && %1.exe
     popd
 goto :EOF
 
