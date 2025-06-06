@@ -1,8 +1,8 @@
 @echo off
 
-REM setlocal enabledelayedexpansion
 
-REM set errorlevel=
+setlocal
+
 
 :: Debug = 0, Release = 1
 if "%2" == "" (
@@ -15,8 +15,8 @@ if "%2" == "" (
     goto :HELP
 )
 
-set compiler=cl.exe
 
+set compiler=cl.exe
 set compiler_flags=-std:c++20 /utf-8 -nologo -Oi -TP -fp:precise -Gm- -MP -FC -EHsc- -GR- -GF
 set compiler_defines=-DUNICODE -D_UNICODE
 
@@ -57,5 +57,6 @@ goto :EOF
         /link user32.lib -OUT:%1.exe && %1.exe
     popd
 goto :EOF
+
 
 REM vim: ft=dosbatch fenc=utf8 ff=dos
