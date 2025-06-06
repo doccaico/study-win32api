@@ -27,7 +27,7 @@ if %release_mode% EQU 0 ( REM Debug
 ) else ( REM Release
     set compiler_flags=%compiler_flags% -O2 -MT
     REM -Z7
-    set compiler_defines=%compiler_defines% -NDEBUG
+    set compiler_defines=%compiler_defines% -DNDEBUG
 )
 
 set compiler_warnings= ^
@@ -46,8 +46,10 @@ REM ) else if "%1" == "window"          ( goto :WINDOW
 
 
 :HELP
-    echo Usage : $ run.cmd [directory's name]
-    echo   Example: $ run.cmd message_box
+    echo Usage : $ run.cmd [directory's name] [--debug^|--release]
+    echo   Example: $ run.cmd message_box           (debug mode)
+    echo            $ run.cmd message_box --debug   (debug mode)
+    echo            $ run.cmd message_box --release (release mode)
 goto :EOF
 
 
